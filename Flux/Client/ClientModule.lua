@@ -1,16 +1,18 @@
 local ClientModule = {}
 
--- Variables
+-- Variables/Dependencies
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-ClientModule.Remotes = {}
+local Flux = ReplicatedStorage:WaitForChild("Flux")
 
--- Dependencies
-local Listener = require(script.Listener)
-local PromiseWrapper = require(script.PromiseWrapper)
-local RemoteList = require(ReplicatedStorage.Flux.Shared.RemoteList)
-local RequestTypes = require(ReplicatedStorage.Flux.Shared.RequestTypes)
+local Shared = require(Flux.Shared.RemoteList)
+local RequestTypes = require(Flux.Shared.RequestTypes)
+local Listener = require(Flux.Client.Listener)
+local PromiseWrapper = require(Flux.Client.PromiseWrapper)
 
 -- Initialize Module
 function ClientModule.Init()
-    
+    -- Cache remotes
+    for n, r in pairs(RemoteList) do
+        self.Remotes[n] = r
+    end
 end
