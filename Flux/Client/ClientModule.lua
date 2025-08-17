@@ -15,4 +15,6 @@ function ClientModule.Init()
     for n, r in pairs(RemoteList) do
         self.Remotes[n] = r
     end
+
+    
 end
