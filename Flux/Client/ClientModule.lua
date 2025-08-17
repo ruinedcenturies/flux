@@ -8,6 +8,7 @@ local Shared = require(Flux.Shared.RemoteList)
 local RequestTypes = require(Flux.Shared.RequestTypes)
 local Listener = require(Flux.Client.Listener)
 local PromiseWrapper = require(Flux.Client.PromiseWrapper)
+local ErrorHandler = require(Flux.Shared.ErrorHandler)
 local RemotesFolder = Config.RemotesFolder
 ClientModule.Remotes = {}
 
@@ -20,7 +21,9 @@ function ClientModule.Init()
         if Remote then
             self.Remotes[Name] = Remote
         else
-            
+            ErrorHandler.LogError(200, string.format("Missing remote: %s for key %s", RemoteName, Name))
         end
     end
+
+    
 end
